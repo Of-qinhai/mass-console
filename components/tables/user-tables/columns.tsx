@@ -1,7 +1,7 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
-import { User } from "@/constants/data";
+import { User } from "@/types/user";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export const columns: ColumnDef<User>[] = [
@@ -29,17 +29,36 @@ export const columns: ColumnDef<User>[] = [
     header: "NAME",
   },
   {
-    accessorKey: "company",
-    header: "COMPANY",
-  },
-  {
-    accessorKey: "role",
-    header: "ROLE",
+    accessorKey: "email",
+    header: "Email",
   },
   {
     accessorKey: "status",
-    header: "STATUS",
+    header: "Status",
   },
+  {
+    accessorKey: "balance",
+    header: "Free Credit",
+    cell: ({ row }) => (
+      row.original.balance || 0
+    )
+  },
+  {
+    accessorKey: "paymentMethodBindStatus",
+    header: "Bind Card",
+    cell: ({ row }) => {
+      const paymentMethodBindStatus = row.original.paymentMethodBindStatus;
+      if (paymentMethodBindStatus === undefined || paymentMethodBindStatus === null) {
+        return '-';
+      }
+      return paymentMethodBindStatus ? 'true' : 'false';
+    }
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
+  },
+
   {
     id: "actions",
     cell: ({ row }) => <CellAction data={row.original} />,
