@@ -2,50 +2,33 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 import { User } from "@/types/user";
-import { Checkbox } from "@/components/ui/checkbox";
 
 export const columns: ColumnDef<User>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: "name",
     header: "NAME",
+    cell: ({ row }) => (
+      row.original.name || '-'
+    )
   },
   {
     accessorKey: "email",
-    header: "Email",
+    header: "EMAIL",
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "STATUS",
   },
   {
     accessorKey: "balance",
-    header: "Free Credit",
+    header: "FREE CREDIT",
     cell: ({ row }) => (
       row.original.balance || 0
     )
   },
   {
     accessorKey: "paymentMethodBindStatus",
-    header: "Bind Card",
+    header: "BIND CARD",
     cell: ({ row }) => {
       const paymentMethodBindStatus = row.original.paymentMethodBindStatus;
       if (paymentMethodBindStatus === undefined || paymentMethodBindStatus === null) {
@@ -58,7 +41,6 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "role",
     header: "Role",
   },
-
   {
     id: "actions",
     cell: ({ row }) => <CellAction data={row.original} />,

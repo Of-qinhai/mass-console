@@ -1,8 +1,9 @@
 import {UserStatus,UserRole} from '@/enums/user';
 import {Pagination} from '@/types/pagenation';
 
-export interface User{
+export type User={
   id:string;
+  name:string;
   email:string;
   balance:number;
   status:UserStatus;
