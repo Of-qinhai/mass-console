@@ -2,7 +2,7 @@ import { PlaygroundClient } from "@/components/tables/playground-table/client";
 import { PlaygroundPage } from "@/types/playground";
 
 import { fetchFromServer } from "@/lib/fetch-from-server";
-import Search from "@/components/tables/user-tables/search"
+import Search from "@/components/tables/playground-table/search"
 import { SearchProps } from "@/types/search";
 import BreadCrumb from "@/components/breadcrumb";
 const breadcrumbItems = [{ title: "Playground", link: "/dashboard/playground" }];
